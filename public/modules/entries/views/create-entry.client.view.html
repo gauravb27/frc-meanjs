@@ -1,0 +1,212 @@
+<section data-ng-controller="EntriesController">
+<div class ="row">
+		<div class="col-sm-12">
+	<div class="page-header">
+		<h1>New Match Entry</h1>
+	</div>
+
+		<div class="row" id="matchInfo">
+			<div class="col-xs-12">
+				<h3>Match Information</h3>
+			</div>
+			<div class="col-xs-2" data-ng-class="{ 'has-error': entryForm.match.$dirty && entryForm.match.$invalid }">
+				<label>Match Number - {{match}}</label>
+				<input type="number" min="1" placeholder="Match Num" data-ng-model="match" />
+			</div>
+			<div class="col-xs-2"  data-ng-class="{ 'has-error': entryForm.team.$dirty && entryForm.team.$invalid }">
+				<label>Team Number - {{team}} </label>
+				<input type="number" min="1" placeholder="Team Num" data-ng-model="team" />
+			</div>
+			<div class="col-xs-2">
+				<div class="row">
+					<div class="col-xs-12">
+						<label>Alliance {{alliance}} </label></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="alliance" value="Blue" data-ng-checked="true"> Blue </label>
+					</div>
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="alliance" value="Red"> Red </label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+<p></p>
+		<div class="row" id="auton">
+			<div class="col-xs-12">
+				<h4>Autonomous Mode</h4>
+			</div>
+			<div class="col-xs-2">
+				<label>Starting Position {{spos}} </label>
+				<div class="row">
+					<div class="col-xs-12">
+						<label>
+							<input type="radio" data-ng-model="spos" value="Alliance" ng-checked="true"> Alliance Wall </label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<label>
+							<input type="radio" data-ng-model="spos" value="Center"> Center Field </label>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-2">
+				<label>Robot Set? {{botset}}</label>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="botset" value="1"> Yes </label>
+					</div>
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="botset" value="0" data-ng-checked="true"> No </label>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-2">
+				<label>Tote Set? {{toteset}}</label>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="toteset" value="1"> Yes </label>
+					</div>
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="toteset" value="0" data-ng-checked="true"> No </label>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-2">
+				<label>Bin Set? {{binset}}</label>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="binset" value="1"> Yes </label>
+					</div>
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="binset" value="0" data-ng-checked="true"> No </label>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-2">
+				<label>Totes Stack? {{autontotestack}}</label>
+				<input type="number" min="0" max="3" data-ng-model="autontotestack" />
+			</div>
+			<div class="col-xs-2" ng-if="autonToteStack===3">
+				<label>Tote Stack Scored? {{autototestackzone}}</label>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="autototestackzone" value="1"> Yes </label>
+					</div>
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="autototestackzone" value="0" data-ng-checked="true"> No </label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p></p>
+		<div class="row" id="tele">
+			<div class="col-xs-12">
+				<h4>Teleoperated Mode</h4>
+			</div>
+			<div class="col-xs-2">
+				<label>Co-Op Stack?</label>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="coop" value="1"> Yes </label>
+					</div>
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="coop" value="0" data-ng-checked="true"> No </label>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-2">
+				<label>Stack 1</label>
+				<div class="row">
+					<div class="col-xs-4">
+						<label>Totes:</label>
+					</div>
+					<div class="col-xs-8">
+						<input type="number" min="0" max="6" data-ng-model="telestack1tote" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<label>Container:</label>
+					</div>
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="telestack1bin" ng-value="1"> Yes </label>
+					</div>
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="telestack1bin" ng-value="0" ng-checked="true"> No </label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<label>Litter:</label>
+					</div>
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="telestack1litter" ng-value="1"> Yes </label>
+					</div>
+					<div class="col-xs-6">
+						<label>
+							<input type="radio" data-ng-model="telestack1litter" ng-value="0" data-ng-checked="true"> No </label>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-1">
+				<div class="row">
+					<div ng-class="{'teletote':telestack1tote>=6, 'bin':telestack1bin===1 && telestack1tote===5, 'litter':telestack1litter===1 && telestack1bin===1 && telestack1tote===5}"></div>
+				</div>
+				<div class="row">
+					<div ng-class="{'teletote':telestack1tote>=5, 'bin':telestack1bin===1 && telestack1tote===4, 'litter':telestack1litter===1 && telestack1bin===1 && telestack1tote===4}"></div>
+				</div>
+				<div class="row">
+					<div ng-class="{'teletote':telestack1tote>=4, 'bin':telestack1bin===1 && telestack1tote===3, 'litter':telestack1litter===1 && telestack1bin===1 && telestack1tote===3}"></div>
+				</div>
+				<div class="row">
+					<div ng-class="{'teletote':telestack1tote>=3, 'bin':telestack1bin===1 && telestack1tote===2, 'litter':telestack1litter ===1 && telestack1bin ===1 && telestack1tote===2}"></div>
+				</div>
+				<div class="row">
+					<div ng-class="{'teletote':telestack1tote>=2, 'bin':telestack1bin===1 && telestack1tote===1, 'litter':telestack1litter===1 && telestack1bin===1 && telestack1tote===1}"></div>
+				</div>
+				<div class="row">
+					<div data-ng-class="{'teletote':telestack1tote>=1}"></div>
+				</div>
+			</div>
+		</div>
+		<p></p>
+		<div class="row" id="comments">
+			<div class="col-xs-12 inline">
+				<p>
+					<label>Additional Comments</label>
+				</p>
+				<textarea rows="4" cols="50" data-ng-model="comments"></textarea>
+				{{comments}}
+			</div>
+		</div>
+
+		<div class="row">
+		<p></p>
+				<div class="col-xs-12">
+				<button ng-click="create()">Submit</button>
+				</div>
+		</div>
+
+	</div>
+</div>
+</section>
