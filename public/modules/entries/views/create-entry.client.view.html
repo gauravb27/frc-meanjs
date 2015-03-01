@@ -115,9 +115,7 @@
 		</div>
 		<p></p>
 		<div class="row" id="tele">
-			<div class="col-xs-12">
-				<h4>Teleoperated Mode</h4>
-			</div>
+			<h4>Teleoperated Mode</h4>
 			<div class="col-xs-2">
 				<label>Co-Op Stack?</label>
 				<div class="row">
@@ -132,61 +130,41 @@
 				</div>
 			</div>
 			<div class="col-xs-2">
-				<label>Stack 1</label>
-				<div class="row">
-					<div class="col-xs-4">
-						<label>Totes:</label>
-					</div>
-					<div class="col-xs-8">
-						<input type="number" min="0" max="6" data-ng-model="telestack1tote" />
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
-						<label>Container:</label>
-					</div>
-					<div class="col-xs-6">
-						<label>
-							<input type="radio" data-ng-model="telestack1bin" ng-value="1"> Yes </label>
-					</div>
-					<div class="col-xs-6">
-						<label>
-							<input type="radio" data-ng-model="telestack1bin" ng-value="0" ng-checked="true"> No </label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
-						<label>Litter:</label>
-					</div>
-					<div class="col-xs-6">
-						<label>
-							<input type="radio" data-ng-model="telestack1litter" ng-value="1"> Yes </label>
-					</div>
-					<div class="col-xs-6">
-						<label>
-							<input type="radio" data-ng-model="telestack1litter" ng-value="0" data-ng-checked="true"> No </label>
-					</div>
-				</div>
+				<label>Number of Tote Stacks</label>
+				<input type="number" min="0" max="6" data-ng-model="teleToteStack" />
 			</div>
-			<div class="col-xs-1">
-				<div class="row">
-					<div ng-class="{'teletote':telestack1tote>=6, 'bin':telestack1bin===1 && telestack1tote===5, 'litter':telestack1litter===1 && telestack1bin===1 && telestack1tote===5}"></div>
-				</div>
-				<div class="row">
-					<div ng-class="{'teletote':telestack1tote>=5, 'bin':telestack1bin===1 && telestack1tote===4, 'litter':telestack1litter===1 && telestack1bin===1 && telestack1tote===4}"></div>
-				</div>
-				<div class="row">
-					<div ng-class="{'teletote':telestack1tote>=4, 'bin':telestack1bin===1 && telestack1tote===3, 'litter':telestack1litter===1 && telestack1bin===1 && telestack1tote===3}"></div>
-				</div>
-				<div class="row">
-					<div ng-class="{'teletote':telestack1tote>=3, 'bin':telestack1bin===1 && telestack1tote===2, 'litter':telestack1litter ===1 && telestack1bin ===1 && telestack1tote===2}"></div>
-				</div>
-				<div class="row">
-					<div ng-class="{'teletote':telestack1tote>=2, 'bin':telestack1bin===1 && telestack1tote===1, 'litter':telestack1litter===1 && telestack1bin===1 && telestack1tote===1}"></div>
-				</div>
-				<div class="row">
-					<div data-ng-class="{'teletote':telestack1tote>=1}"></div>
-				</div>
+			<div class="col-xs-2">
+				<label>Litter Thrown</label>
+				<input type="number" min="0" max="10" data-ng-model="litter" />
+			</div>
+			<div class="col-xs-2">
+				<label>Robot Zone Play</label>
+				<select ng-model="zone">
+					<option ng-value="1">Alliance Wall</option>
+					<option ng-value="2">Landfill</option>
+					<option ng-value="3" ng-selected="true">Mixed</option>
+				</select>
+			</div>
+		</div>
+		<div></div>
+		<div class="row">
+			<div ng-if="teleToteStack >=1">
+				<div data-stack-input-directive stack-number="1" total-scored-objects="scoredGamePieces">stack-{{teleToteStack}}</div>
+			</div>
+			<div ng-if="teleToteStack >=2">
+				<div data-stack-input-directive stack-number="2" total-scored-objects="scoredGamePieces">stack-{{teleToteStack}}</div>
+			</div>
+			<div ng-if="teleToteStack >=3">
+				<div data-stack-input-directive stack-number="3" total-scored-objects="scoredGamePieces">stack-{{teleToteStack}}</div>
+			</div>
+			<div ng-if="teleToteStack >=4">
+				<div data-stack-input-directive stack-number="4" total-scored-objects="scoredGamePieces">stack-{{teleToteStack}}</div>
+			</div>
+			<div ng-if="teleToteStack >=5">
+				<div data-stack-input-directive stack-number="5" total-scored-objects="scoredGamePieces">stack-{{teleToteStack}}</div>
+			</div>
+			<div ng-if="teleToteStack >=6">
+				<div data-stack-input-directive stack-number="6" total-scored-objects="scoredGamePieces">stack-{{teleToteStack}}</div>
 			</div>
 		</div>
 		<p></p>
@@ -202,11 +180,10 @@
 
 		<div class="row">
 		<p></p>
-				<div class="col-xs-12">
+			<div class="col-xs-12">
 				<button ng-click="create()">Submit</button>
-				</div>
+			</div>
 		</div>
-
 	</div>
 </div>
 </section>

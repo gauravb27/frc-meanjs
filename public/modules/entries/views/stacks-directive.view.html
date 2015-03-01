@@ -1,0 +1,59 @@
+<div>
+	<div class="col-xs-2">
+		<h4>Stack {{stackNumber}}</h4>
+		<div class="row">
+			<div class="col-xs-4">
+				<label>Totes:</label>
+			</div>
+			<div class="col-xs-8">
+				<input type="number" min="0" max="6" data-ng-model="toteStack" ng-change="updateScoredObjects('tote')"/>
+			</div>
+		</div>
+		<div class="row" ng-show="toteStack > 0 && toteStack < 6">
+			<div class="col-xs-12">
+				<label>Container:</label>
+			</div>
+			<div class="col-xs-6">
+				<label>
+					<input type="radio" data-ng-model="binOnStack" ng-value="1" ng-change="updateScoredObjects('bin')"> Yes </label>
+			</div>
+			<div class="col-xs-6">
+				<label>
+					<input type="radio" data-ng-model="binOnStack" ng-value="-1" ng-checked="true" ng-change="updateScoredObjects('bin')"> No </label>
+			</div>
+		</div>
+		<div class="row" ng-show="binOnStack===1 && toteStack < 6">
+			<div class="col-xs-12">
+				<label>Litter:</label>
+			</div>
+			<div class="col-xs-6">
+				<label>
+					<input type="radio" data-ng-model="litterOnStack" ng-value="1" ng-change="updateScoredObjects('litter')"> Yes </label>
+			</div>
+			<div class="col-xs-6">
+				<label>
+					<input type="radio" data-ng-model="litterOnStack" ng-value="-1" data-ng-checked="true" ng-change="updateScoredObjects('litter')"> No </label>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-1">
+		<div class="row">
+			<div ng-class="{'teletote':toteStack>=6, 'bin':binOnStack===1 && toteStack===5, 'litter':litterOnStack===1 && binOnStack===1 && toteStack===5}"></div>
+		</div>
+		<div class="row">
+			<div ng-class="{'teletote':toteStack>=5, 'bin':binOnStack===1 && toteStack===4, 'litter':litterOnStack===1 && binOnStack===1 && toteStack===4}"></div>
+		</div>
+		<div class="row">
+			<div ng-class="{'teletote':toteStack>=4, 'bin':binOnStack===1 && toteStack===3, 'litter':litterOnStack===1 && binOnStack===1 && toteStack===3}"></div>
+		</div>
+		<div class="row">
+			<div ng-class="{'teletote':toteStack>=3, 'bin':binOnStack===1 && toteStack===2, 'litter':litterOnStack ===1 && binOnStack ===1 && toteStack===2}"></div>
+		</div>
+		<div class="row">
+			<div ng-class="{'teletote':toteStack>=2, 'bin':binOnStack===1 && toteStack===1, 'litter':litterOnStack===1 && binOnStack===1 && toteStack===1}"></div>
+		</div>
+		<div class="row">
+			<div data-ng-class="{'teletote':toteStack>=1}"></div>
+		</div>
+	</div>
+</div>

@@ -59,21 +59,29 @@ var EntrySchema = new Schema({
 		type: Number,
 		default: 0
 	},
-	telestack1tote:{
+	totes:{
 		type: Number,
 		default: 0
 	},
-	telestack1bin:{
+	bins:{
 		type: Number,
 		default: 0
 	},
-	telestack1litter:{
+	stackLitter:{
+		type: Number,
+		default: 0
+	},
+	litter:{
 		type: Number,
 		default: 0
 	},
 	score:{
 		type: Number,
 		default: 0
+	},
+	zone: {
+		type: String,
+		default: ''
 	},
 	comments: {
 		type: String,

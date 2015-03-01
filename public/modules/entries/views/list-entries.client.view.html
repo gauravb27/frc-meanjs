@@ -1,5 +1,6 @@
     <section data-ng-controller="EntriesController" data-ng-init="find()">
     <h1 class="page-header">Match Entries</h1>
+    <label>Filter results by Team #: </label><input type="search" ng-model="teamSearch" ng-change="sumOfResults()"/>
     <table show-filter="true" class="table">
         <thead>
             <tr>
@@ -15,6 +16,7 @@
                 <th>T-COOP</th>
                 <th>T-TOTE</th>
                 <th>T-BIN</th>
+                <th>T-SLITTER</th>
                 <th>T-LITTER</th>
                 <th>SCORE</th>
                 <th>COM</th>
@@ -24,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr data-ng-repeat="entry in entries" data-ng-href="#!/entries/{{entry._id}}" data-ng-filter="{'match': number}">
+            <tr data-ng-repeat="entry in entries | filter: {team: teamSearch} as filteredEntries" data-ng-href="#!/entries/{{entry._id}}">
                 <td>{{entry.match}}</td>
                 <td>{{entry.team}}</td>
                 <td>{{entry.alliance}}</td>
@@ -35,52 +37,41 @@
                 <td>{{entry.autontotestack}}</td> 
                 <td>{{entry.autototestackzone}}</td> <!--End of Auton-->
                 <td>{{entry.coop}}</td>   <!--Start of Tele-->  
-                <td>{{entry.telestack1tote}}</td>
-                <td>{{entry.telestack1bin}}</td>
-                <td>{{entry.telestack1litter}}</td> <!--End of Tele-->
+                <td>{{entry.totes}}</td>
+                <td>{{entry.bins}}</td>
+                <td>{{entry.stackLitter}}</td>
+                <td>{{entry.litter}}</td> <!--End of Tele-->
                 <td>{{entry.score}}</td> 
                 <td>{{entry.comments}}</td>
                 <td>{{entry.created|date:'mediumDate'}}</td>
                 <td>{{entry.user.displayName}}</td>
             </tr>
         </tbody>
+        <tfoot ng-if="teamSearch.length > 0">
+            <tr>
+                <td>Total:</td>
+                <td></td>
+                <td></td>
+                <td>{{sum.spos}}</td> 
+                <td>{{sum.botset}}</td>      <!--Start of Auton-->
+                <td>{{sum.toteset}}</td>
+                <td>{{sum.binset}}</td>
+                <td>{{sum.autontotestack}}</td> 
+                <td>{{sum.autototestackzone}}</td> <!--End of Auton-->
+                <td>{{sum.coop}}</td>   <!--Start of Tele-->  
+                <td>{{sum.totes}}</td>
+                <td>{{sum.bins}}</td>
+                <td>{{sum.stackLitter}}</td>
+                <td>{{sum.litter}}</td> <!--End of Tele-->
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
     </table>
 
 	<div class="alert alert-warning text-center" data-ng-if="entries.$resolved && !entries.length">
 		No match entries yet, why don't you <a href="/#!/entries/create">create one</a>?
 	</div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th width="25px">MATCH</th>
-                <th>TEAM</th>
-                <th>SIDE</th>
-                <th>S-POS</th>
-                <th>FOUL</th>
-                <th>COM</th>
-                <th>CD</th>
-                <th>SCOUT</th>
-                <th width="50px"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr data-ng-repeat="entry in entries" data-ng-href="#!/entries/{{entry._id}}">
-                <td>Match #</td>
-                <td>Team #</td>
-                <td>Alliance</td>
-                <td>Starting Position</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Created Timestamp</td>
-                <td>Scout Name</td>
-            </tr>
-        </tbody>
-    </table>
-
 </section>
