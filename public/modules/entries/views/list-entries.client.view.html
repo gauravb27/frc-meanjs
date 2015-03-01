@@ -1,6 +1,6 @@
     <section data-ng-controller="EntriesController" data-ng-init="find()">
     <h1 class="page-header">Match Entries</h1>
-    <label>Filter results by Team #: </label><input type="search" ng-model="teamSearch" ng-change="sumOfResults()"/>
+    <label>Filter results by Team #: </label><input type="search" ng-model="teamSearch"/>
     <table show-filter="true" class="table">
         <thead>
             <tr>
@@ -52,7 +52,7 @@
                 <td>Total:</td>
                 <td></td>
                 <td></td>
-                <td>{{sum.spos}}</td> 
+                <td><!-- {{sum.spos}} --></td> 
                 <td>{{sum.botset}}</td>      <!--Start of Auton-->
                 <td>{{sum.toteset}}</td>
                 <td>{{sum.binset}}</td>

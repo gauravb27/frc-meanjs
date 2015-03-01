@@ -104,7 +104,7 @@ angular.module('entries').controller('EntriesController', ['$filter', '$scope', 
 			});
 		};
 
-		$scope.sumOfResults = function() {
+		var sumOfResults = function() {
 			$scope.sum = {
 				spos: 0,
 				botset: 0,
@@ -119,12 +119,17 @@ angular.module('entries').controller('EntriesController', ['$filter', '$scope', 
 				litter: 0
 			};
 
-console.log($scope.filteredEntries);
-			for (var i = 0; i < $scope.filteredEntries.length-1; i++) {
+			for (var i = 0; i < $scope.filteredEntries.length; i++) {
       			for (var key in $scope.sum) {
         			$scope.sum[key] += $scope.filteredEntries[i][key];
         		}
         	}
 		};
+
+		$scope.$watch('filteredEntries', function(newVal, oldVal) {
+			if(newVal != oldVal) {
+				sumOfResults();
+			}
+		});
 	}
 ]);
